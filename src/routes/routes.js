@@ -1,3 +1,6 @@
-const Router = () => [];
+import postRouter from "./post.router.js";
+import userRouter from "./user.router.js";
 
-export default Router;
+const Routes = () => [userRouter, postRouter];
+
+export default Routes;
