@@ -18,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserSeederService } from './seeder/superadmin.service';
 import { ProfileModule } from './profile/profile.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { ProfileModule } from './profile/profile.module';
       inject: [ConfigService],
     }),
     ProfileModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService, UserSeederService],
