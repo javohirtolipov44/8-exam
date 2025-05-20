@@ -9,6 +9,7 @@ import {
   Get,
   Put,
   Param,
+  Delete,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -53,23 +54,15 @@ export class MoviesController {
 
   @Put(':id')
   @UseGuards(AuthGuard)
-  @UseInterceptors(
-    FileInterceptor('poster', {
-      storage: diskStorage({
-        destination: './downloads/posters',
-        filename: (req, file, callback) => {
-          const ext = extname(file.originalname);
-          const filename = uuidv4() + ext;
-          callback(null, filename);
-        },
-      }),
-    }),
-  )
   updateMovie(
-    @UploadedFile() poster: Express.Multer.File,
     @Body() body: any,
     @Param('id') id: string,
   ) {
-    return this.movieService.update(id, body, poster);
+    return this.movieService.update(id, body);
+  }
+
+  @Delete(':id')
+  deleteMovie(@Param('id') id: string) {
+    return this.movieService.remove(id);
   }
 }

@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProfileService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async profile(req: Request) {
     const { user_id } = (req as any).user;
@@ -16,8 +16,11 @@ export class ProfileService {
       data: {
         user_id: user.id,
         full_name: user.fullname,
+        email: user.email,
+        username: user.username,
         phone: user.phoneNumber,
         country: user.country,
+        role: user.role,
         created_at: user.createdAt,
         avatar_url: user.avatarUrl,
       },
