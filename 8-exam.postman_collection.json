@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "17b1e0cb-17f4-4300-8531-820dcfa9398e",
+		"name": "8-exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14374179"
+	},
+	"item": [
+		{
+			"name": "register_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"qqqqqqqqq\",\r\n    \"email\": \"qqqqqqqqq@example.com\",\r\n    \"password\": \"qqqqqqq\",\r\n    \"fullname\": \"qqqqqqqqqq\",\r\n    \"phoneNumber\": \"+998900203255\",\r\n    \"country\": \"Uzbekistan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"qqqqqqqqq@example.com\",\r\n    \"password\": \"qqqqqqq\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "{{url}}/api/auth/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/profile"
+			},
+			"response": []
+		},
+		{
+			"name": "update_profile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullname\": \"Aliyev Valijon\",\r\n    \"phoneNumber\": \"+998901234567\",\r\n    \"country\": \"Uzbekistan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/profile"
+			},
+			"response": []
+		},
+		{
+			"name": "create_subscription_plan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"asda\",\r\n    \"price\": 49.99,\r\n    \"durationDays\": 30,\r\n    \"features\": [\"HD sifatli kinolar\", \"Reklamasiz\", \"Yangi kinolar\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/subscription/plans"
+			},
+			"response": []
+		},
+		{
+			"name": "all_subscription_plans",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/subscription/plans"
+			},
+			"response": []
+		},
+		{
+			"name": "purchase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"planId\": \"4e889461-cfba-4124-8f7d-ecceff3d5394\",\r\n       \"paymentMethod\": \"card\",\r\n       \"autoRenew\": true,\r\n       \"paymentDetails\": {\r\n         \"cardNumber\": \"8600030448478456\",\r\n         \"expiry\": \"04/26\",\r\n         \"cardHolder\": \"ALIJON VALIYEV\"\r\n       }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/subscription/purchase"
+			},
+			"response": []
+		},
+		{
+			"name": "create_categories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Fantastika\",\r\n    \"slug\": \"fantastika\",\r\n    \"description\": \"Fantastika janri\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "update_categories",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Fantastika\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/categories/73406a48-3ac0-4866-81f1-68dd0ce722a1"
+			},
+			"response": []
+		},
+		{
+			"name": "one_category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:4000/api/categories/73406a48-3ac0-4866-81f1-68dd0ce722a1"
+			},
+			"response": []
+		},
+		{
+			"name": "all_category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_category",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{url}}/api/categories/844f8e95-63e4-427d-8301-538353f0966f"
+			},
+			"response": []
+		},
+		{
+			"name": "create_movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Xatiko Vafodor It 6",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "XatikoVafodorIt26",
+							"type": "text"
+						},
+						{
+							"key": "releaseYear",
+							"value": "2020",
+							"type": "text"
+						},
+						{
+							"key": "durationMinutes",
+							"value": "160",
+							"type": "text"
+						},
+						{
+							"key": "subscriptionType",
+							"value": "premium",
+							"type": "text"
+						},
+						{
+							"key": "categoryId",
+							"value": "[\"0ae7a79d-2980-4c80-843e-8ba6b1a370fa\"]",
+							"type": "text"
+						},
+						{
+							"key": "poster",
+							"type": "file",
+							"src": "/C:/Users/user/Pictures/Фоновые изображения рабочего стола/2. Хаски.jpg"
+						}
+					]
+				},
+				"url": "{{url}}/api/admin/movies"
+			},
+			"response": []
+		},
+		{
+			"name": "all_movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Action\",\r\n    \"slug\": \"action\",\r\n    \"description\": \"Action janri\"\r\n}"
+				},
+				"url": "{{url}}/api/admin/movies"
+			},
+			"response": []
+		},
+		{
+			"name": "update_movie",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"title\": \"Yangilangan Sarlavha\",\r\n       \"description\": \"Yangilangan ta'rif\",\r\n       \"subscription_type\": \"premium\",\r\n       \"category_ids\": [\"66b07b96-004f-4d96-b054-b01190f7faa1\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/admin/movies/e144b141-8afd-4683-b8a4-131c3386f7b8"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_movie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{url}}/api/admin/movies/3a7d31a1-5eec-4d15-81ef-539f8ec1fb44"
+			},
+			"response": []
+		},
+		{
+			"name": "movie_file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/user/Videos/2025-05-18 19-49-01.mkv"
+						},
+						{
+							"key": "quality",
+							"value": "p720",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "uz",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{url}}/api/admin/movies/files/b9737e3a-3da0-41ab-9a8d-5c207253ac93"
+			},
+			"response": []
+		},
+		{
+			"name": "search_movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/user/Videos/2025-05-18 19-49-01.mkv"
+						},
+						{
+							"key": "quality",
+							"value": "p720",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "uz",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{url}}/api/movies/page=1&limit=20&search=qasoskorlar&subscription_type=premium"
+			},
+			"response": []
+		},
+		{
+			"name": "search_slug",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/movies/yangi-film"
+			},
+			"response": []
+		},
+		{
+			"name": "create_movie_favorite",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movie_id\": \"116afe62-32e3-48b6-a6ab-3f4d51441cbe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/favorites"
+			},
+			"response": []
+		},
+		{
+			"name": "me_favorites",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/favorites"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_favorite",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{url}}/api/favorites/cda6d5cf-889e-4ffc-9497-d71c07334f35"
+			},
+			"response": []
+		},
+		{
+			"name": "create_review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": 1,\r\n    \"comment\": \"Juda ajoyib film, ko'rishni tavsiya etaman!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/reviews/42fd9d5f-8d38-4542-9e12-131774eeb91e"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_review",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{url}}/api/reviews/42fd9d5f-8d38-4542-9e12-131774eeb91e"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.environment.set(\"url\", \"localhost:4000\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,26 +1,88 @@
-import { Injectable } from '@nestjs/common';
-import { CreateFavoriteDto } from './dto/create-favorite.dto';
-import { UpdateFavoriteDto } from './dto/update-favorite.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { log } from 'console';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class FavoritesService {
-  create(createFavoriteDto: CreateFavoriteDto) {
-    return 'This action adds a new favorite';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(data: any, user_id: string) {
+    const movie = await this.prisma.movie.findUnique({
+      where: {
+        id: data.movie_id,
+      },
+    });
+    if (!movie) {
+      return {
+        success: false,
+        message: 'Kino topilmadi',
+      };
+    }
+    const favorite = await this.prisma.favorite.create({
+      data: {
+        userId: user_id,
+        movieId: data.movie_id,
+      },
+    });
+
+    return {
+      success: true,
+      message: "Kino sevimlilar ro'yxatiga qo'shildi",
+      data: {
+        id: favorite.id,
+        movie_id: data.movie_id,
+        movie_title: movie.title,
+        created_at: favorite.createdAt,
+      },
+    };
   }
 
-  findAll() {
-    return `This action returns all favorites`;
+  async findAll(user_id: string) {
+    const favorites = await this.prisma.favorite.findMany({
+      where: {
+        userId: user_id,
+      },
+      select: {
+        id: true,
+        movie: {
+          select: {
+            id: true,
+            title: true,
+            slug: true,
+            posterUrl: true,
+            releaseYear: true,
+            rating: true,
+            subscriptionType: true,
+          },
+        },
+      },
+    });
+
+    const favoriteMovies = favorites.map((fav) => fav.movie);
+    // return favorites.length
+
+    return {
+      success: true,
+      data: {
+        movies: favoriteMovies,
+        total: favorites.length,
+      },
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} favorite`;
-  }
+  async remove(id: string, userId: string) {
+    const favorite = await this.prisma.favorite.deleteMany({
+      where: {
+        userId,
+        movieId: id,
+      },
+    });
+    log(favorite)
+    if (favorite.count === 0) throw new NotFoundException('Sevimli kino topilmadi');
 
-  update(id: number, updateFavoriteDto: UpdateFavoriteDto) {
-    return `This action updates a #${id} favorite`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} favorite`;
+    return {
+      success: true,
+      message: "Kino sevimlilar ro'yxatidan o'chirildi",
+    };
   }
 }

@@ -344,7 +344,7 @@ last_watched: TIMESTAMP DEFAULT NOW()
 
 1. **GET /api/movies**
 
-   - Query params: `page=1&limit=20&category=action&search=qasoskorlar&subscription_type=free`
+   - Query params: `page=1&limit=20&search=qasoskorlar&subscription_type=premium`
    - Response:
      ```json
      {
